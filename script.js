@@ -19,6 +19,107 @@
   ];
   const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
+  const companiesViewport = document.querySelector(".companies-viewport");
+  if (companiesViewport) {
+    const companiesTrack = companiesViewport.querySelector(".companies-track");
+    const companiesGroup = companiesTrack?.querySelector(".companies-group");
+    let drag = null;
+
+    if (companiesTrack && companiesGroup) {
+      const getOffset = () => new DOMMatrixReadOnly(
+        companiesTrack.style.transform || getComputedStyle(companiesTrack).transform,
+      ).m41;
+      const getGroupWidth = () => companiesGroup.getBoundingClientRect().width;
+      const wrapOffset = (offset, width = getGroupWidth()) => (
+        width ? -(((-offset % width) + width) % width) : 0
+      );
+      const getAnimationDuration = () => {
+        const durationValue = getComputedStyle(companiesTrack).animationDuration;
+        return parseFloat(durationValue) * (durationValue.endsWith("ms") ? 1 : 1000);
+      };
+      const setOffset = (offset, animate, duration = getAnimationDuration()) => {
+        const width = getGroupWidth();
+        const wrappedOffset = wrapOffset(offset, width);
+        if (!animate || !width) {
+          companiesTrack.style.transform = `translateX(${wrappedOffset}px)`;
+          companiesViewport.classList.remove("is-dragging");
+          return;
+        }
+
+        const phase = (-wrappedOffset / width) * duration;
+        companiesTrack.style.setProperty("--companies-marquee-delay", `-${phase}ms`);
+        companiesTrack.style.removeProperty("transform");
+        companiesViewport.classList.remove("is-dragging");
+      };
+
+      companiesViewport.addEventListener("pointerdown", event => {
+        if (event.pointerType === "mouse" && event.button !== 0) return;
+
+        const animate = !prefersReducedMotion.matches && companiesTrack
+          .getAnimations()
+          .some(animation => animation.animationName === "companies-marquee");
+        drag = {
+          pointerId: event.pointerId,
+          startX: event.clientX,
+          startY: event.clientY,
+          startOffset: getOffset(),
+          groupWidth: getGroupWidth(),
+          animationDuration: getAnimationDuration(),
+          animate,
+          isDragging: false,
+        };
+        companiesViewport.setPointerCapture(event.pointerId);
+        companiesViewport.classList.add("is-dragging");
+      });
+
+      companiesViewport.addEventListener("pointermove", event => {
+        if (!drag || drag.pointerId !== event.pointerId) return;
+
+        const deltaX = event.clientX - drag.startX;
+        const deltaY = event.clientY - drag.startY;
+        if (!drag.isDragging && Math.abs(deltaX) > 5 && Math.abs(deltaX) > Math.abs(deltaY)) {
+          drag.isDragging = true;
+          companiesViewport.classList.add("is-dragging");
+        }
+        if (!drag.isDragging) return;
+
+        event.preventDefault();
+        const offset = wrapOffset(drag.startOffset + deltaX, drag.groupWidth);
+        companiesTrack.style.transform = `translateX(${offset}px)`;
+      });
+
+      const finishDrag = event => {
+        if (!drag || drag.pointerId !== event.pointerId) return;
+        const completedDrag = drag;
+        drag = null;
+        const offset = completedDrag.isDragging ? getOffset() : completedDrag.startOffset;
+        setOffset(
+          offset,
+          completedDrag.animate && !prefersReducedMotion.matches,
+          completedDrag.animationDuration,
+        );
+      };
+
+      companiesViewport.addEventListener("pointerup", finishDrag);
+      companiesViewport.addEventListener("pointercancel", finishDrag);
+
+      companiesViewport.addEventListener("keydown", event => {
+        if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") return;
+        event.preventDefault();
+
+        const width = getGroupWidth();
+        const item = companiesGroup.querySelector(".company-logo");
+        const gap = parseFloat(getComputedStyle(companiesGroup).gap) || 0;
+        const step = (item?.getBoundingClientRect().width || 176) + gap;
+        const direction = event.key === "ArrowRight" ? -1 : 1;
+        const animate = !prefersReducedMotion.matches && companiesTrack
+          .getAnimations()
+          .some(animation => animation.animationName === "companies-marquee");
+        setOffset(getOffset() + direction * step, animate && width > 0);
+      });
+    }
+  }
+
   if ("IntersectionObserver" in window && !prefersReducedMotion.matches) {
     const revealTargets = [...new Set(
       revealGroups.flatMap(selector => [...document.querySelectorAll(selector)]),

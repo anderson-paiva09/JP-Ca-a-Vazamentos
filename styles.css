@@ -32,7 +32,8 @@ p { line-height: 1.7; }
 .site-header { position: fixed; top: 0; left: 0; width: 100%; z-index: 50; background: transparent; transition: background-color 180ms ease; }
 .site-header.is-scrolled { background: transparent; }
 .header-inner { position: relative; display: flex; align-items: center; justify-content: space-between; height: 88px; }
-.brand { flex-shrink: 0; display: block; width: 225px; }
+.brand { flex-shrink: 0; display: block; width: 225px; transition: opacity 180ms ease, visibility 180ms ease; }
+.site-header.is-scrolled .brand { opacity: 0; visibility: hidden; pointer-events: none; }
 .brand img { width: 100%; height: auto; }
 .mobile-nav-toggle { display: none; }
 .jp-navbar { position: absolute; left: 50%; transform: translateX(-50%); }
@@ -115,6 +116,22 @@ h2 { margin-top: 13px; font-size: clamp(28px, 3vw, 38px); letter-spacing: -.04em
 .reviews-footer { display: flex; align-items: center; justify-content: space-between; gap: 24px; margin-top: 32px; }
 .reviews-google-link { display: inline-flex; align-items: center; justify-content: space-between; gap: 32px; min-height: 48px; padding: 12px 22px; border: 1px solid #506675; border-radius: 999px; color: var(--foreground); font-size: 13px; font-weight: 700; transition: color 160ms ease, background-color 160ms ease; }
 .reviews-google-link:hover { background: var(--foreground); color: white; }
+.client-companies { display: grid; grid-template-columns: minmax(190px, .85fr) minmax(0, 2fr); align-items: center; gap: 32px; margin-top: 48px; padding-block: 20px; border-block: 1px solid var(--border); }
+.client-companies h3 { margin: 0; font-size: clamp(19px, 2vw, 25px); font-weight: 700; letter-spacing: -.035em; }
+.companies-viewport { min-width: 0; overflow: hidden; cursor: grab; overscroll-behavior-x: contain; touch-action: pan-y; user-select: none; -webkit-mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent); mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent); }
+.companies-viewport::-webkit-scrollbar { display: none; }
+.companies-viewport:active, .companies-viewport.is-dragging { cursor: grabbing; }
+.companies-viewport:focus-visible { outline: 2px solid var(--primary); outline-offset: 4px; }
+.companies-viewport.is-dragging .companies-group { pointer-events: none; }
+.companies-track { display: flex; width: max-content; animation: companies-marquee 32s linear infinite; animation-delay: var(--companies-marquee-delay, 0s); }
+.companies-viewport.is-dragging .companies-track { animation: none !important; }
+.companies-group { display: flex; flex: 0 0 auto; align-items: stretch; gap: 16px; width: max-content; margin: 0; padding: 0 16px 0 0; list-style: none; }
+.company-logo { position: relative; display: flex; flex: 0 0 176px; min-width: 0; height: 100px; align-items: center; justify-content: center; overflow: hidden; padding: 14px; border: 1px solid #d8d8d4; border-radius: 6px; background: #fff; transition: transform 200ms cubic-bezier(.2,.7,.2,1), border-color 200ms ease, box-shadow 200ms ease; }
+.company-logo img { display: block; width: 100%; height: 100%; object-fit: contain; pointer-events: none; }
+@media (hover: hover) and (pointer: fine) {
+  .company-logo:hover { transform: translateY(-3px); border-color: #aebec5; box-shadow: 0 8px 18px rgb(16 44 64 / 9%); }
+}
+@keyframes companies-marquee { to { transform: translateX(-50%); } }
 .contact-section { background: #102c40; color: white; padding-block: 84px; }
 .contact-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 110px; align-items: center; }
 .contact-copy .eyebrow { color: #a8ccdc; }
@@ -220,6 +237,7 @@ h2 { margin-top: 13px; font-size: clamp(28px, 3vw, 38px); letter-spacing: -.04em
   .reviews-carousel-button:hover:not(:disabled) { border-color: var(--primary); background: var(--muted); }
   .reviews-carousel-button:disabled { opacity: .35; cursor: default; }
   .reviews-footer { align-items: flex-start; flex-direction: column; gap: 16px; margin-top: 24px; }
+  .client-companies { grid-template-columns: 1fr; gap: 16px; margin-top: 32px; }
   .contact-section { padding-block: 56px; }
   .contact-grid { grid-template-columns: 1fr; gap: 28px; }
   .contact-copy h2 { font-size: 38px; }
@@ -241,6 +259,9 @@ h2 { margin-top: 13px; font-size: clamp(28px, 3vw, 38px); letter-spacing: -.04em
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+  .companies-viewport { overflow-x: hidden; scroll-behavior: auto; scroll-snap-type: none; touch-action: pan-y; }
+  .companies-viewport, .companies-viewport:active, .companies-viewport.is-dragging { cursor: auto; }
+  .companies-track { width: max-content; animation: none; }
 }
 
 [data-scroll-reveal] { opacity: 1; transform: none; }
@@ -263,7 +284,7 @@ a { color: inherit; }
 .hero-actions .button-light { background: white; color: var(--foreground); }
 .hero-actions .button-light:hover { background: #e8f0f1; }
 .button:disabled { opacity: .55; cursor: not-allowed; }
-.nav-track { display: flex; align-items: center; gap: 4px; position: relative; isolation: isolate; padding: 6px; border: 0; border-radius: 100px; background: transparent; }
+.nav-track { display: flex; align-items: center; gap: 4px; position: relative; isolation: isolate; padding: 6px; border: 0; border-radius: 100px; background: #102c40; }
 .nav-link { position: relative; display: flex; align-items: center; justify-content: center; min-height: 44px; padding: 10px 14px; border-radius: 100px; font-size: 12px; font-weight: 600; line-height: 1.3; color: #e2eaee; text-shadow: 0 1px 8px rgb(7 25 38 / 65%); transition: color 160ms ease; }
 .nav-link .icon { display: none; }
 .nav-link:hover, .nav-link[aria-current] { color: white; }
