@@ -1,0 +1,714 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#102c40">
+    <meta
+      name="description"
+      content="Detecção de vazamentos com geofone digital e câmera térmica. Serviços hidráulicos em Ribeirão Preto e região. Solicite atendimento à JP pelo WhatsApp."
+    >
+    <title>JP Caça Vazamentos | Ribeirão Preto e região</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+  </head>
+
+  <body>
+    <!-- Ícones locais: nenhuma biblioteca ou CDN é necessária. -->
+    <svg class="icon-sprite" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <symbol id="i-arrow" viewBox="0 0 24 24">
+        <path d="M7 17 17 7M7 7h10v10"/>
+      </symbol>
+      <symbol id="i-down" viewBox="0 0 24 24">
+        <path d="M12 5v14m-6-6 6 6 6-6"/>
+      </symbol>
+      <symbol id="i-check" viewBox="0 0 24 24">
+        <path d="m5 12 4 4L19 6"/>
+      </symbol>
+      <symbol id="i-chat" viewBox="0 0 24 24">
+        <path d="M21 11.5a8.4 8.4 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.4 8.4 0 0 1 3.8-.9h.5a8.5 8.5 0 0 1 8 8v.5Z"/>
+      </symbol>
+      <symbol id="i-whatsapp" viewBox="0 0 24 24">
+        <path d="M20.1 11.9a8.2 8.2 0 0 1-12.1 7.2L4 20l.9-3.7a8.2 8.2 0 1 1 15.2-4.4Z"/>
+        <path d="M8.4 7.6c-.2-.5-.5-.5-.8-.5h-.7c-.2 0-.6.1-.9.4-.3.4-1.2 1.2-1.2 2.9s1.2 3.4 1.4 3.7c.2.2 2.4 3.8 6 5.1 3 .9 3.6.7 4.2.6.7-.1 2.1-.9 2.4-1.7.3-.8.3-1.5.2-1.7-.1-.1-.4-.2-.8-.4l-2.5-1.2c-.3-.1-.6-.2-.8.2-.3.4-1 1.2-1.2 1.4-.2.3-.4.3-.8.1-.4-.2-1.7-.6-3.2-1.9-1.2-1-1.9-2.3-2.1-2.7-.2-.4 0-.6.2-.8l.6-.7c.2-.2.2-.4.3-.6.1-.2 0-.5 0-.6Z"/>
+      </symbol>
+      <symbol id="i-menu" viewBox="0 0 24 24">
+        <path d="M4 7h16M4 12h16M4 17h16"/>
+      </symbol>
+      <symbol id="i-close" viewBox="0 0 24 24">
+        <path d="m6 6 12 12M18 6 6 18"/>
+      </symbol>
+      <symbol id="i-map" viewBox="0 0 24 24">
+        <path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z"/>
+        <circle cx="12" cy="10" r="3"/>
+      </symbol>
+      <symbol id="i-home" viewBox="0 0 24 24">
+        <path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-8H9v8H4a1 1 0 0 1-1-1Z"/>
+      </symbol>
+      <symbol id="i-wrench" viewBox="0 0 24 24">
+        <path d="m14.7 6.3 3 3 3.5-3.5a6 6 0 0 1-7.8 7.8l-7 7a2.1 2.1 0 0 1-3-3l7-7a6 6 0 0 1 7.8-7.8Z"/>
+      </symbol>
+      <symbol id="i-help" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="9"/>
+        <path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 3-3 3m.1 4h.01"/>
+      </symbol>
+      <symbol id="i-plus" viewBox="0 0 24 24">
+        <path d="M12 5v14M5 12h14"/>
+      </symbol>
+      <symbol id="i-sound" viewBox="0 0 24 24">
+        <path d="M2 10v4m4-7v10m4-14v18m4-12v6m4-9v12m4-8v4"/>
+      </symbol>
+      <symbol id="i-thermo" viewBox="0 0 24 24">
+        <path d="M14 14.8V5a2 2 0 0 0-4 0v9.8a4 4 0 1 0 4 0ZM12 9v8"/>
+      </symbol>
+      <symbol id="i-file" viewBox="0 0 24 24">
+        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Zm0 0v6h6M8 15l3 3 5-5"/>
+      </symbol>
+      <symbol id="i-quote" viewBox="0 0 24 24">
+        <path d="M3 14h5v6H2v-6c0-5 3-9 7-10M16 14h5v6h-6v-6c0-5 3-9 7-10"/>
+      </symbol>
+    </svg>
+
+    <a href="#conteudo" class="skip-link">Pular para o conteúdo</a>
+    <a
+      href="https://wa.me/5516992954703"
+      class="floating-whatsapp"
+      aria-label="Conversar com a JP pelo WhatsApp"
+      data-whatsapp
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <img src="images/whatsapp.png" alt="" width="40" height="40">
+    </a>
+
+    <!-- Cabeçalho e navegação principal -->
+    <header class="site-header">
+      <div class="site-container header-inner">
+        <a href="#inicio" class="brand" aria-label="JP Caça Vazamentos — início">
+          <img
+            src="images/logo.webp"
+            alt="JP Caça Vazamentos RP"
+            width="300"
+            height="52"
+          >
+        </a>
+
+        <button
+          class="mobile-nav-toggle"
+          type="button"
+          aria-label="Abrir menu de navegação"
+          aria-expanded="false"
+          aria-controls="primary-navigation"
+          hidden
+        >
+          <svg class="icon menu-open-icon" aria-hidden="true"><use href="#i-menu"/></svg>
+          <svg class="icon menu-close-icon" aria-hidden="true"><use href="#i-close"/></svg>
+        </button>
+
+        <nav id="primary-navigation" class="jp-navbar" aria-label="Navegação principal">
+          <div class="nav-track">
+            <span class="nav-lamp" aria-hidden="true"></span>
+            <a href="#inicio" class="nav-link" aria-current="location">
+              <svg class="icon" aria-hidden="true"><use href="#i-home"/></svg>
+              <span>Início</span>
+            </a>
+            <a href="#servicos" class="nav-link">
+              <svg class="icon" aria-hidden="true"><use href="#i-wrench"/></svg>
+              <span>Serviços</span>
+            </a>
+            <a href="#contato" class="nav-link">
+              <svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg>
+              <span>Contato</span>
+            </a>
+            <a href="#duvidas" class="nav-link">
+              <svg class="icon" aria-hidden="true"><use href="#i-help"/></svg>
+              <span>Dúvidas</span>
+            </a>
+          </div>
+        </nav>
+
+      </div>
+    </header>
+
+    <main id="conteudo">
+      <!-- Apresentação principal -->
+      <section id="inicio" class="hero" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <p class="eyebrow location">
+            <svg class="icon" aria-hidden="true"><use href="#i-map"/></svg>
+            Ribeirão Preto e região
+          </p>
+          <h1 id="hero-title">
+            Vazamento encontrado.<br>
+            <span>Tranquilidade de volta.</span>
+          </h1>
+          <p class="hero-description">
+            Conta de água alta ou uma mancha na parede? A JP investiga a origem
+            com tecnologia, evitando quebras desnecessárias.
+          </p>
+          <div class="hero-actions">
+            <a href="#contato" class="button button-whatsapp">
+              <svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg>
+              Solicitar atendimento
+            </a>
+            <a href="#servicos" class="button button-light">
+              Conhecer os serviços
+              <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg>
+            </a>
+          </div>
+          <p class="hero-assurance">
+            <svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>
+            Geofone digital · Câmera térmica · Laudo técnico
+          </p>
+        </div>
+
+        <figure class="hero-visual">
+          <img
+            src="images/hero.jpg"
+            alt="Profissional utilizando equipamento de detecção para inspecionar uma tubulação"
+            width="1672"
+            height="941"
+            fetchpriority="high"
+          >
+          <video
+            class="hero-video"
+            autoplay
+            muted
+            loop
+            playsinline
+            preload="metadata"
+            poster="images/hero.jpg"
+            aria-hidden="true"
+            tabindex="-1"
+          >
+            <source src="videos/hero.mp4" type="video/mp4">
+          </video>
+        </figure>
+      </section>
+
+      <!-- Diferenciais -->
+      <div class="assurance-strip">
+        <div class="site-container assurance-inner">
+          <span>
+            <svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>
+            Nota fiscal
+          </span>
+          <span>
+            <svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>
+            Garantia de serviço
+          </span>
+          <span>
+            <svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>
+            Pagamento facilitado
+          </span>
+          <span class="assurance-caption">
+            Cuidado com seu imóvel, do diagnóstico ao reparo.
+          </span>
+        </div>
+      </div>
+
+      <!-- Serviços -->
+      <section id="servicos" class="section site-container" aria-labelledby="services-title">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">O que podemos resolver</p>
+            <h2 id="services-title">
+              Um cuidado completo<br>
+              com a sua hidráulica.
+            </h2>
+          </div>
+          <p>
+            Da suspeita de vazamento ao reparo.<br>
+            Encontre o serviço para o seu caso.
+          </p>
+        </div>
+
+        <div class="services-grid">
+          <article class="service-card">
+            <div class="service-image">
+              <img
+                src="images/vazamentos.webp"
+                alt="Serviço de detecção de vazamentos"
+                width="600"
+                height="400"
+                loading="lazy"
+              >
+              <span>01</span>
+            </div>
+            <div class="service-body">
+              <h3>Vazamentos ocultos</h3>
+              <p>
+                Localizamos o ponto do vazamento com equipamentos de precisão
+                e menos intervenções no imóvel.
+              </p>
+              <details>
+                <summary>
+                  O que está incluído
+                  <span aria-hidden="true">+</span>
+                </summary>
+                <ul>
+                  <li>Detecção com geofone digital</li>
+                  <li>Inspeção com câmera térmica</li>
+                  <li>Laudo técnico</li>
+                </ul>
+              </details>
+              <a
+                href="https://wa.me/5516992954703"
+                class="text-link"
+                data-whatsapp="vazamentos ocultos"
+              >
+                Conversar com a equipe
+                <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg>
+              </a>
+            </div>
+          </article>
+
+          <article class="service-card">
+            <div class="service-image">
+              <img
+                src="images/infiltracoes.webp"
+                alt="Inspeção de infiltração"
+                width="600"
+                height="400"
+                loading="lazy"
+              >
+              <span>02</span>
+            </div>
+            <div class="service-body">
+              <h3>Infiltrações</h3>
+              <p>
+                Investigamos a origem da umidade para orientar o tratamento do
+                problema.
+              </p>
+              <details>
+                <summary>
+                  O que está incluído
+                  <span aria-hidden="true">+</span>
+                </summary>
+                <ul>
+                  <li>Identificação da origem</li>
+                  <li>Inspeção de paredes e pisos</li>
+                </ul>
+              </details>
+              <a
+                href="https://wa.me/5516992954703"
+                class="text-link"
+                data-whatsapp="infiltrações"
+              >
+                Conversar com a equipe
+                <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg>
+              </a>
+            </div>
+          </article>
+
+          <article class="service-card">
+            <div class="service-image">
+              <img
+                src="images/torneiras.webp"
+                alt="Reparo de torneira"
+                width="600"
+                height="400"
+                loading="lazy"
+              >
+              <span>03</span>
+            </div>
+            <div class="service-body">
+              <h3>Reparos hidráulicos</h3>
+              <p>
+                Cuidamos de torneiras, válvulas e chuveiros para reduzir
+                desperdícios e melhorar o funcionamento.
+              </p>
+              <details>
+                <summary>
+                  O que está incluído
+                  <span aria-hidden="true">+</span>
+                </summary>
+                <ul>
+                  <li>Torneiras e válvulas Hidra</li>
+                  <li>Kit de caixa acoplada</li>
+                  <li>Troca e limpeza de chuveiros</li>
+                  <li>Manutenção hidráulica</li>
+                </ul>
+              </details>
+              <a
+                href="https://wa.me/5516992954703"
+                class="text-link"
+                data-whatsapp="reparos hidráulicos"
+              >
+                Conversar com a equipe
+                <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg>
+              </a>
+            </div>
+          </article>
+
+          <article class="service-card">
+            <div class="service-image">
+              <img
+                src="images/caixa.webp"
+                alt="Serviço em caixa d’água"
+                width="600"
+                height="400"
+                loading="lazy"
+              >
+              <span>04</span>
+            </div>
+            <div class="service-body">
+              <h3>Caixa d’água</h3>
+              <p>
+                Instalação, limpeza e troca de boia para cuidar do abastecimento
+                do seu imóvel.
+              </p>
+              <details>
+                <summary>
+                  O que está incluído
+                  <span aria-hidden="true">+</span>
+                </summary>
+                <ul>
+                  <li>Instalação de caixa d’água</li>
+                  <li>Limpeza de reservatórios</li>
+                  <li>Troca de boia</li>
+                </ul>
+              </details>
+              <a
+                href="https://wa.me/5516992954703"
+                class="text-link"
+                data-whatsapp="caixa d’água"
+              >
+                Conversar com a equipe
+                <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg>
+              </a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- Equipamentos e tecnologia -->
+      <section class="technology" aria-labelledby="technology-title">
+        <div class="site-container technology-inner">
+          <div class="technology-intro">
+            <p class="eyebrow">Tecnologia a serviço do seu imóvel</p>
+            <h2 id="technology-title">
+              Precisão para encontrar.<br>
+              Cuidado para resolver.
+            </h2>
+            <p>
+              Cada problema pede uma investigação. Os equipamentos ajudam a
+              direcionar a intervenção ao ponto certo.
+            </p>
+          </div>
+
+          <div class="technology-list">
+            <div class="technology-item">
+              <svg class="icon" aria-hidden="true"><use href="#i-sound"/></svg>
+              <div>
+                <h3>Geofone digital</h3>
+                <p>A escuta da tubulação ajuda a localizar vazamentos ocultos.</p>
+              </div>
+            </div>
+            <div class="technology-item">
+              <svg class="icon" aria-hidden="true"><use href="#i-thermo"/></svg>
+              <div>
+                <h3>Câmera térmica</h3>
+                <p>A leitura de temperatura auxilia na investigação de umidade.</p>
+              </div>
+            </div>
+            <div class="technology-item">
+              <svg class="icon" aria-hidden="true"><use href="#i-file"/></svg>
+              <div>
+                <h3>Laudo técnico</h3>
+                <p>Documentação para acompanhar o diagnóstico do seu imóvel.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Etapas do atendimento e avaliações -->
+      <section class="section site-container process" aria-labelledby="process-title">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Sem complicar</p>
+            <h2 id="process-title">Seu atendimento começa aqui.</h2>
+          </div>
+        </div>
+
+        <ol class="process-grid">
+          <li>
+            <span class="step-number">01</span>
+            <h3>Conte o que aconteceu</h3>
+            <p>Informe o imóvel e os sinais que você percebeu.</p>
+          </li>
+          <li>
+            <span class="step-number">02</span>
+            <h3>Converse com a equipe</h3>
+            <p>Pelo WhatsApp, combine os detalhes e solicite um orçamento.</p>
+          </li>
+          <li>
+            <span class="step-number">03</span>
+            <h3>Receba o diagnóstico</h3>
+            <p>A inspeção orienta os próximos passos para resolver o problema.</p>
+          </li>
+        </ol>
+
+        <section id="reviews-prompt" class="reviews-prompt" aria-labelledby="reviews-title">
+          <div class="reviews-heading">
+            <div class="reviews-prompt-copy">
+              <p class="eyebrow">A confiança começa pela experiência</p>
+              <h3 id="reviews-title">O que clientes de Ribeirão<br> dizem sobre a JP.</h3>
+              <p id="reviews-description">Depoimentos de clientes publicados no Google.</p>
+            </div>
+            <div id="reviews-summary" class="reviews-summary" hidden>
+              <strong id="reviews-rating" class="reviews-rating"></strong>
+              <span id="reviews-stars" class="review-stars" role="img"></span>
+              <span id="reviews-count" class="reviews-count"></span>
+            </div>
+          </div>
+          <div class="reviews-carousel">
+            <div id="testimonials" class="testimonials-grid" aria-label="Avaliações de clientes" hidden></div>
+            <div id="reviews-carousel-controls" class="reviews-carousel-controls" hidden>
+              <button id="reviews-prev" class="reviews-carousel-button" type="button" aria-label="Avaliação anterior" aria-controls="testimonials">
+                <span aria-hidden="true">←</span>
+              </button>
+              <span id="reviews-position" class="reviews-position" aria-live="polite" aria-atomic="true"></span>
+              <button id="reviews-next" class="reviews-carousel-button" type="button" aria-label="Próxima avaliação" aria-controls="testimonials">
+                <span aria-hidden="true">→</span>
+              </button>
+            </div>
+          </div>
+          <div class="reviews-footer">
+            <a
+              id="reviews-google-link"
+              href="https://www.google.com/search?q=JP+Ca%C3%A7a+Vazamentos+RP+avalia%C3%A7%C3%B5es"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="reviews-google-link"
+            >
+              Ver todas no Google
+              <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg>
+            </a>
+          </div>
+        </section>
+      </section>
+
+      <!-- Contato e formulário para iniciar conversa no WhatsApp -->
+      <section id="contato" class="contact-section" aria-labelledby="contact-title">
+        <div class="site-container contact-grid">
+          <div class="contact-copy">
+            <p class="eyebrow">Fale com a JP</p>
+            <h2 id="contact-title">
+              O que está<br>
+              acontecendo?
+            </h2>
+            <p>
+              Conte o que você percebeu. A equipe responde pelo WhatsApp para
+              entender melhor e orientar os próximos passos.
+            </p>
+            <a href="tel:+5516992954703" class="contact-phone">
+              (16) 99295-4703
+              <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg>
+            </a>
+            <span class="contact-region">
+              <svg class="icon" aria-hidden="true"><use href="#i-map"/></svg>
+              Ribeirão Preto e região
+            </span>
+          </div>
+
+          <form
+            id="whatsapp-form"
+            class="inquiry-form"
+            action="https://wa.me/5516992954703"
+            method="get"
+          >
+            <div class="form-heading">
+              <h3>Como podemos ajudar?</h3>
+              <p>Responda o que souber. Você confere tudo antes de enviar.</p>
+            </div>
+            <div class="form-row">
+              <div class="field">
+                <label for="problem">
+                  O que aconteceu? <span aria-hidden="true">*</span>
+                </label>
+                <select
+                  id="problem"
+                  name="problem"
+                  required
+                  aria-describedby="problem-error"
+                >
+                  <option value="" disabled selected>Escolha uma opção</option>
+                  <option>Conta de água alta</option>
+                  <option>Infiltração ou umidade</option>
+                  <option>Vazamento visível</option>
+                  <option>Problema na caixa d’água</option>
+                  <option>Torneira, válvula ou chuveiro</option>
+                  <option>Não sei identificar</option>
+                  <option>Outro problema</option>
+                </select>
+                <span id="problem-error" class="field-error" hidden>
+                  Selecione o problema percebido.
+                </span>
+              </div>
+
+              <div class="field">
+                <label for="property">Tipo de imóvel <span>(opcional)</span></label>
+                <select id="property" name="property">
+                  <option value="" selected>Escolha se quiser</option>
+                  <option>Residência</option>
+                  <option>Apartamento</option>
+                  <option>Condomínio</option>
+                  <option>Comércio</option>
+                  <option>Empresa</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="details">Quer explicar melhor? <span>(opcional)</span></label>
+              <textarea
+                id="details"
+                name="text"
+                rows="2"
+                maxlength="300"
+                placeholder="Ex.: a mancha apareceu esta semana, perto do banheiro."
+                aria-describedby="details-help"
+              ></textarea>
+              <span class="field-help" id="details-help">
+                Uma frase já ajuda. Não precisa preencher tudo.
+              </span>
+            </div>
+
+            <button type="submit" class="button button-whatsapp form-submit" hidden>
+              <svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg>
+              Chamar a JP no WhatsApp
+              <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg>
+            </button>
+            <p class="form-note">
+              O WhatsApp abre para você revisar e enviar a mensagem.
+            </p>
+            <noscript>
+              <p>
+                Ative o JavaScript para preparar sua mensagem, ou
+                <a href="https://wa.me/5516992954703">converse diretamente pelo WhatsApp</a>.
+              </p>
+            </noscript>
+          </form>
+        </div>
+      </section>
+
+      <!-- Perguntas frequentes -->
+      <section
+        id="duvidas"
+        class="section site-container faq-section"
+        aria-labelledby="faq-title"
+      >
+        <div>
+          <p class="eyebrow">Antes de chamar</p>
+          <h2 id="faq-title">Dúvidas frequentes.</h2>
+          <p>
+            Entenda como funciona<br>
+            o atendimento da JP.
+          </p>
+        </div>
+
+        <div class="faq-list">
+          <details class="faq-item" name="faq">
+            <summary class="faq-trigger">
+              Como vocês localizam um vazamento oculto?
+              <svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg>
+            </summary>
+            <div class="faq-content">
+              <p>
+                A JP utiliza geofone digital e câmera térmica para investigar o
+                problema e localizar o ponto do vazamento. A técnica depende
+                dos sinais encontrados durante a inspeção.
+              </p>
+            </div>
+          </details>
+
+          <details class="faq-item" name="faq">
+            <summary class="faq-trigger">
+              É preciso quebrar paredes e pisos?
+              <svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg>
+            </summary>
+            <div class="faq-content">
+              <p>
+                A detecção usa equipamentos para evitar quebras desnecessárias.
+                Se for preciso reparar a tubulação, a intervenção é direcionada
+                ao ponto identificado e deve ser combinada com a equipe.
+              </p>
+            </div>
+          </details>
+
+          <details class="faq-item" name="faq">
+            <summary class="faq-trigger">
+              Vocês atendem condomínios e empresas?
+              <svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg>
+            </summary>
+            <div class="faq-content">
+              <p>
+                Sim. A JP atende residências, apartamentos, condomínios,
+                comércios e empresas em Ribeirão Preto e região. Confirme a
+                disponibilidade para seu endereço pelo WhatsApp.
+              </p>
+            </div>
+          </details>
+
+          <details class="faq-item" name="faq">
+            <summary class="faq-trigger">
+              Vocês fornecem laudo técnico e nota fiscal?
+              <svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg>
+            </summary>
+            <div class="faq-content">
+              <p>
+                Sim. A empresa informa que fornece laudo técnico e nota fiscal.
+                Fale com a equipe sobre os documentos necessários para seu
+                atendimento.
+              </p>
+            </div>
+          </details>
+
+          <details class="faq-item" name="faq">
+            <summary class="faq-trigger">
+              Como solicito um orçamento?
+              <svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg>
+            </summary>
+            <div class="faq-content">
+              <p>
+                Selecione o tipo de imóvel e o problema no formulário. Ao
+                continuar, o WhatsApp abre com uma mensagem preenchida. Você
+                pode revisar, acrescentar informações e enviar para a equipe.
+              </p>
+            </div>
+          </details>
+        </div>
+      </section>
+    </main>
+
+    <!-- Rodapé -->
+    <footer class="site-footer">
+      <div class="site-container footer-main">
+        <a href="#inicio" class="brand" aria-label="Voltar ao início">
+          <img
+            src="images/logo.webp"
+            alt="JP Caça Vazamentos RP"
+            width="300"
+            height="52"
+            loading="lazy"
+          >
+        </a>
+        <p>
+          Detecção de vazamentos e serviços hidráulicos.<br>
+          Ribeirão Preto e região.
+        </p>
+        <a href="https://wa.me/5516992954703" class="footer-link" data-whatsapp>
+          Falar pelo WhatsApp
+          <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg>
+        </a>
+      </div>
+
+      <div class="site-container footer-bottom">
+        <span>© <span id="year">2026</span> JP Caça Vazamentos RP</span>
+        <a href="#inicio">Voltar ao início ↑</a>
+      </div>
+    </footer>
+  </body>
+</html>
