@@ -1,10 +1,33 @@
 "use strict";
 
 (() => {
+  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
   const heroVideo = document.querySelector(".hero-video");
   if (heroVideo) {
-    heroVideo.defaultPlaybackRate = 0.5;
-    heroVideo.playbackRate = 0.5;
+    const playHeroVideo = () => {
+      const playback = heroVideo.play();
+      if (playback) {
+        playback.catch(error => {
+          if (error.name !== "AbortError") {
+            console.error("Não foi possível reproduzir o vídeo de fundo.", error);
+          }
+        });
+      }
+    };
+    const applyMotionPreference = () => {
+      if (prefersReducedMotion.matches) {
+        heroVideo.pause();
+        heroVideo.removeAttribute("autoplay");
+      } else {
+        heroVideo.defaultPlaybackRate = 0.5;
+        heroVideo.playbackRate = 0.5;
+        heroVideo.setAttribute("autoplay", "");
+        if (heroVideo.paused) playHeroVideo();
+      }
+    };
+
+    prefersReducedMotion.addEventListener("change", applyMotionPreference);
+    applyMotionPreference();
   }
 
   const revealGroups = [
@@ -17,8 +40,6 @@
     ".faq-section > div, .faq-item",
     ".footer-main > *, .footer-bottom > *",
   ];
-  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-
   const companiesViewport = document.querySelector(".companies-viewport");
   if (companiesViewport) {
     const companiesTrack = companiesViewport.querySelector(".companies-track");
@@ -50,6 +71,9 @@
         companiesTrack.style.setProperty("--companies-marquee-delay", `-${phase}ms`);
         companiesTrack.style.removeProperty("transform");
         companiesViewport.classList.remove("is-dragging");
+        const marqueeAnimation = companiesTrack.getAnimations()
+          .find(animation => animation.animationName === "companies-marquee");
+        if (marqueeAnimation) marqueeAnimation.currentTime = 0;
       };
 
       companiesViewport.addEventListener("pointerdown", event => {
@@ -143,7 +167,7 @@
 
   // Telefone internacional: somente números, sem espaços ou pontuação.
   const phone = "5516992954703";
-  const defaultMessage = "Oi, JP! Encontrei vocês pelo site e gostaria de conversar.";
+  const defaultMessage = "Oi, JP! Gostaria de pedir um orçamento.";
   const whatsappUrl = message => `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
 
   document.querySelectorAll("[data-whatsapp]").forEach(link => {
